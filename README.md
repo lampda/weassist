@@ -4,7 +4,7 @@ wechat assistant bot
 
 ## Installation
 
-	git clone git@github.com:lampda/weassist.git
+	git clone https://github.com/lampda/weassist.git
 	npm install
 	node index.js
 
