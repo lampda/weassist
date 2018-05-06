@@ -4,10 +4,10 @@ const {
 } = require('wechaty')
 
 
-const listContacts(contact) {
-    const contactList = await bot.Contact.findAll()
-    console.log('Contact number: ' + contactList.length)
-}
+// const listContacts(contact) {
+//     const contactList = await bot.Contact.findAll()
+//     console.log('Contact number: ' + contactList.length)
+// }
 
 
 const makeFile = function(filename, data) {
@@ -79,14 +79,14 @@ bot
         } else { // 2. confirm friend ship
             console.log(`${dt_iso} new friendship confirmed with ${contact.name()} [${contact.id()}]`)
         }
-        listContacts(contact)
+        // listContacts(contact)
     })
     .on('message', message => {
         var dt = new Date()
         var dt_iso = dt.toISOString()
             // var userType = message.
 
-        var room = m.room()
+        var room = message.room()
 
         if (room) {
             console.log('${dt_iso} room message received.')
