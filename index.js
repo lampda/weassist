@@ -1,4 +1,3 @@
-const log4js = require('log4js')
 const fs = require('fs')
 const {
     Wechaty
@@ -7,7 +6,7 @@ const {
 
 const listContacts(contact) {
     const contactList = await bot.Contact.findAll()
-    console.log('Contact number: %d\n', contactList.length)
+    console.log('Contact number: ' + contactList.length)
 }
 
 
@@ -90,34 +89,34 @@ bot
         var room = m.room()
 
         if (room) {
-            console.log('room message received.')
+            console.log('${dt_iso} room message received.')
             saveRoomMsg(dt_iso, message, 'main_room_' + room + '.log')
         } else if (message.self()) {
-            console.log('self message received.')
+            console.log('${dt_iso} self message received.')
             saveSelfMsg(dt_iso, message, 'main.log')
         } else {
-            console.log('chat one2one message received.')
+            console.log('${dt_iso} chat one2one message received.')
             saveChatMsg(dt_iso, message, 'main_self.log')
         }
 
         console.log(`${dt_iso} ${message.from().name()}[${message.from().id}]: ${message}\n`)
     })
-    .on('room-join', (room: Room, inviteeList: Contact[], inviter: Contact) => {
+    .on('room-join', (room, inviteeList, inviter) => {
         var dt = new Date()
         var dt_iso = dt.toISOString()
         const nameList = inviteeList.map(c => c.name()).join(',')
-        console.log(`Room ${room.topic()} got new member ${nameList}, invited by ${inviter}`)
+        console.log(`${dt_iso} Room ${room.topic()} got new member ${nameList}, invited by ${inviter}`)
     })
-    .on('room-leave', (room: Room, leaverList: Contact[]) => {
+    .on('room-leave', (room, leaverList) => {
         var dt = new Date()
         var dt_iso = dt.toISOString()
         const nameList = leaverList.map(c => c.name()).join(',')
-        console.log(`Room ${room.topic()} lost member ${nameList}`)
+        console.log(`${dt_iso} Room ${room.topic()} lost member ${nameList}`)
     })
-    .on('room-topic', (room: Room, topic: string, oldTopic: string, changer: Contact) => {
+    .on('room-topic', (room, topic, oldTopic, changer) => {
         var dt = new Date()
         var dt_iso = dt.toISOString()
-        console.log(`Room ${room.topic()} topic changed from ${oldTopic} to ${topic} by ${changer.name()}`)
+        console.log(`${dt_iso} Room ${room.topic()} topic changed from ${oldTopic} to ${topic} by ${changer.name()}`)
     })
 
 .start()
