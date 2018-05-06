@@ -4,15 +4,14 @@
   "description": "wechat assitant for automation",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "debug": "node --inspect index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sheng li <saintree@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
-    "log4js": "^2.5.3",
-    "node-datetime": "^2.0.6",
     "npm": "^6.0.0",
-    "roarr": "^2.0.2",
     "wechaty": "^0.14.1"
   }
 }
